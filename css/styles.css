@@ -190,7 +190,11 @@ ul {
 .btn:focus {
   background-color: #188ce8;
 }
-
+.backdrop is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 /* skills */
 .skills-icon-bg {
   background-color: #f5f4fa;
