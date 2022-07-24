@@ -12,6 +12,7 @@
   --dark-bg-cl--: #2f303a;
   /* other */
   --indent: 30px;
+  --animation: 2500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   background-color: rgba(255, 255, 255, 1);
@@ -85,21 +86,38 @@ ul {
   display: block;
   padding: 32px 0;
 }
+
 .page-link {
   color: var(--main-font--);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
+  transition: color var(--animation);
 }
 .page-link:hover {
   color: var(--color-accent);
 }
 .active-current {
   color: var(--color-accent);
+  position: relative;
 }
+.active-current::after {
+  content: '';
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* Остальной код */
 .header-link {
   display: flex;
   align-items: center;
+  transition: color var(--animation);
 }
 .contacts-items:hover,
 .contacts-items:focus {
@@ -166,10 +184,9 @@ ul {
   font-size: 16px;
   line-height: 1.9;
   color: #ffffff;
+  transition: background-color var(--animation);
 }
-.btn:hover {
-  background-color: #188ce8;
-}
+.btn:hover,
 .btn:focus {
   background-color: #188ce8;
 }
@@ -243,6 +260,25 @@ img {
   flex-basis: calc((100% - 30 * (var(--items) -1)) / var(--items));
 }
 
+.doing-card {
+  position: relative;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  position: absolute;
+  background: rgba(47, 48, 58, 0.8);
+  padding: 27px 10px;
+
+  bottom: 0;
+  width: 100%;
+}
+
 /* team */
 .team-section {
   background-color: #f5f4fa;
@@ -309,6 +345,7 @@ img {
   border-radius: 50%;
   fill: #afb1b8;
   background-color: #ffffff;
+  transition: fill var(--animation), background-color var(--animation);
 }
 .social-link:hover,
 .social-link:focus {
@@ -345,6 +382,7 @@ img {
   border: 1px solid #afb1b8;
   border-radius: 4px;
   fill: #afb1b8;
+  transition: fill var(--animation), border-color var(--animation);
 }
 .client-link:hover,
 .client-link:focus {
@@ -380,6 +418,7 @@ img {
   padding: 6px 22px;
   border: none;
   border-radius: 4px;
+  transition: color var(--animation), background-color var(--animation), box-shadow var(--animation);
 }
 .button.current {
   color: var(--color-white);
@@ -405,9 +444,28 @@ img {
   --items: 3;
 }
 .item {
-  flex-basis: calc((100% - var(--indent) * (var(--items) -1)) / var(--items));
+  flex-basis: calc((100% - var(--indent) * (var(--items) - 1)) / var(--items));
 }
 
+.overlay-box {
+  overflow: hidden;
+  height: 294px;
+  position: relative;
+}
+.card-overlay {
+  background: rgba(33, 150, 243, 0.9);
+  transform: translateY(0);
+  position: absolute;
+  opacity: 0;
+  transition: opacity var(--animation), transform var(--animation);
+}
+.overlay-text {
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--color-white);
+  padding: 63px 24px;
+}
 .card-description {
   padding: 20px 20px;
   border: 1px solid #eeeeee;
@@ -428,12 +486,19 @@ img {
 }
 .link-project {
   display: block;
+  transition: box-shadow var(--animation);
 }
 .link-project:hover,
 .link-project:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
+.link-project:hover .card-overlay,
+.link-project:focus .card-overlay {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
 /* footer */
 .footer {
   background-color: var(--dark-bg-cl--);
@@ -469,6 +534,7 @@ img {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.7;
+  transition: color var(--animation);
 }
 .footer-link:hover,
 .footer-link:focus {
@@ -510,9 +576,9 @@ img {
   border-radius: 50%;
   fill: #ffffff;
   background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color var(--animation);
 }
 .join-link:hover,
 .join-link:focus {
-  fill: #ffffff;
   background-color: var(--color-accent);
 }
