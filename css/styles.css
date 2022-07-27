@@ -205,7 +205,7 @@ ul {
   height: 100%;
 
   background-color: rgba(0, 0, 0, 0.2);
-  transition: opacity var(--animation);
+  transition: opacity var(--animation), visibility var(--animation);
 }
 
 .modal {
@@ -214,9 +214,8 @@ ul {
   height: 581px;
   background-color: var(--color-white);
   border-radius: 4px;
-  opacity: 1;
-  transition: opacity var(--animation);
 }
+
 .modal-btn {
   position: absolute;
   top: 8px;
